@@ -22,6 +22,7 @@ render(koa, {
   cache: false,
   debug: true
 });
+
 koa
   .use(routes.routes())
   .use(routes.allowedMethods());
