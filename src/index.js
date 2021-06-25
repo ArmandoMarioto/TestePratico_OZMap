@@ -9,10 +9,19 @@
 const PORT = process.env.PORT || 3000;
 
 const Koa = require('koa');
+const render = require('koa-ejs');
 const koa = new Koa();
 
 const routes = require('./routes');
+const path = require('path');
 
+render(koa, {
+  root: path.join(__dirname, 'views'),
+  layout: false,
+  viewExt: 'ejs',
+  cache: false,
+  debug: true
+});
 koa
   .use(routes.routes())
   .use(routes.allowedMethods());

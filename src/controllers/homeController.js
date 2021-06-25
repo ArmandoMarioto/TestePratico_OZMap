@@ -1,4 +1,5 @@
 exports.paginaInicial = 
   async (ctx) =>{
-    ctx.body = `Seu servidor esta rodando em http://localhost:`; //http://localhost:3000/
+    await ctx.render('index')
+    //ctx.body = `Seu servidor esta rodando em http://localhost:`; //http://localhost:3000/
 };
