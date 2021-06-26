@@ -5,6 +5,6 @@ const homeController = require('./controllers/homeController');
 
 //Rotas da Home
 
-router.get('/', homeController.paginaInicial);
+router.get('/', homeController.index);
 
 module.exports = router;
