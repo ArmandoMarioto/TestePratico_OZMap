@@ -19,25 +19,16 @@
 
             <div class="reponsive-table">
                 <table class="table my-3">
-                    <tr>
-                        <td>Armando</td>
-                        <td>Marioto</td>
-                        <td>5930950395</td>
-                        <td>armando@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Armando</td>
-                      <td>Marioto</td>
-                      <td>5930950395</td>
-                      <td>armando@gmail.com</td>
-                  </tr>
-                  <tr>
-                      <td>Armando</td>
-                      <td>Marioto</td>
-                      <td>5930950395</td>
-                      <td>armando@gmail.com</td>
-                  </tr>
-          
+                    <% usuarios.forEach(usuario => { %>
+                        <tr>
+                          <td><%= usuario.nome %></td>
+                          <td><%= usuario.email %></td>
+                          <td><%= usuario.idade %></td>
+                          <td><a href="/cadastro/<%= usuario._id %>">Editar</a></td>
+                          <td><a class="text-danger" href="/cadastro/delete/<%= usuario._id %>">Excluir</a></td>
+                        </tr>
+                        <% }); %>
+
                 </table>
             </div>
 

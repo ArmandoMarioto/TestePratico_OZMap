@@ -65,7 +65,7 @@ Usuario.prototype.edit = async function(id) {
   
   Usuario.buscaUsuarios = async function() {
     const usuarios = await UsuarioModel.find()
-      .sort({ nome: -1 });
+      .sort({ nome: 1 });
     return usuarios;
   };
   
