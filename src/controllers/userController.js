@@ -17,9 +17,20 @@ exports.cadastro =
       await ctx.render('index');;
       return;
     }
-    ctx.redirect('/');
+    ctx.redirect(`/cadastro/${usuario.usuario._id}`);
     }
     catch(e){console.log(e);
       await ctx.render('cadrastro');}
 
+};
+
+exports.editIndex = 
+  async (ctx) =>{
+    if(!ctx.request.params.id)return ;
+   
+    
+   const usuario = await Usuario.buscaPorId(ctx.request.params.id)
+   if(!usuario)return;
+   console.log(usuario.nome)
+    await ctx.render('cadrastro',{usuario})
 };

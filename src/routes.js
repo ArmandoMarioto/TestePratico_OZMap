@@ -13,5 +13,6 @@ router.get('/', homeController.index);
 //Rotas do usuario
 router.get('/cadastro', userController.index);
 router.post('/cadastro/register',koaBody, userController.cadastro);
+router.get('/cadastro/:id',koaBody, userController.editIndex);
 
 module.exports = router;

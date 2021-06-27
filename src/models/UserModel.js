@@ -63,9 +63,9 @@ Usuario.prototype.edit = async function(id) {
     return usuario;
   };
   
-  Usuario.buscaContatos = async function() {
+  Usuario.buscaUsuarios = async function() {
     const usuarios = await UsuarioModel.find()
-      .sort({ criadoEm: -1 });
+      .sort({ nome: -1 });
     return usuarios;
   };
   
