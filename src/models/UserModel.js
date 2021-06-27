@@ -1,7 +1,9 @@
+
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema
+({
     nome:{type:String , required: true},
     email:{type:String , required: true},
     idade:{type:Number, required: true},
@@ -9,19 +11,21 @@ const UserSchema = new mongoose.Schema({
 
 const UsuarioModel = mongoose.model('Usuario', UserSchema);
 
-function Usuario(body) {
-    this.body = body;
+function Usuario(ctx) 
+{
+    this.body = ctx.body;
     this.errors = [];
     this.usuario = null;
-  }
+}
 
-  Usuario.prototype.register = async function() {
+Usuario.prototype.register = async function()
+{
     this.valida();
     if(this.errors.length > 0) return;
     this.usuario = await UsuarioModel.create(this.body);
-  };
+};
   
-  Usuario.prototype.valida = function() {
+Usuario.prototype.valida = function() {
     this.cleanUp();
   
     // Validação
@@ -31,7 +35,7 @@ function Usuario(body) {
     
   };
   
-  Usuario.prototype.cleanUp = function() {
+Usuario.prototype.cleanUp = function() {
     for(const key in this.body) {
       if(typeof this.body[key] !== 'string') {
         this.body[key] = '';
@@ -45,7 +49,7 @@ function Usuario(body) {
     };
   };
   
-  Usuario.prototype.edit = async function(id) {
+Usuario.prototype.edit = async function(id) {
     if(typeof id !== 'string') return;
     this.valida();
     if(this.errors.length > 0) return;

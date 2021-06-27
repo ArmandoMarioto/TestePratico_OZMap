@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const Koa = require('koa');
 const render = require('koa-ejs');
 const koa = new Koa();
+const bodyparser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const connectionString = 'mongodb+srv://armando:guX650MqmqjJHjHS@armandocluster.6brbe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(connectionString,
@@ -37,6 +38,7 @@ render(koa, {
 
 koa
   .use(routes.routes())
+  .use(bodyparser())
   .use(routes.allowedMethods());
 
 const server = koa.listen(PORT);

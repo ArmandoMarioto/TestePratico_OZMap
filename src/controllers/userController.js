@@ -1,17 +1,24 @@
 const Usuario = require('../models/UserModel');
+
 exports.index = 
   async (ctx) =>{
     await ctx.render('cadrastro')
 };
 exports.cadastro = 
   async (ctx) =>{
-    const usuario = new Usuario(ctx.body);
-    console.log(ctx.body);
+    try
+    {
+    const usuario = new Usuario(ctx.request);
     await usuario.register();
 
-    if(usuario.errors.length > 0) {
+    if(usuario.errors.length > 0) 
+    {
       ctx.flash('errors', usuario.errors);
-      ctx.redirect('back');
+      await ctx.render('index');;
       return;
     }
+    }
+    catch(e){console.log(e);
+      await ctx.render('cadrastro');}
+
 };
