@@ -17,6 +17,7 @@ exports.cadastro =
       await ctx.render('index');;
       return;
     }
+    ctx.redirect('/');
     }
     catch(e){console.log(e);
       await ctx.render('cadrastro');}

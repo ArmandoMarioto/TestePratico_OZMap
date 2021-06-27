@@ -13,6 +13,8 @@ const render = require('koa-ejs');
 const koa = new Koa();
 const bodyparser = require('koa-bodyparser');
 const mongoose = require('mongoose');
+
+//Não conseguir fazer funcionar com a Variavel Env, por isso tive que colocar aqui mesmo .
 const connectionString = 'mongodb+srv://armando:guX650MqmqjJHjHS@armandocluster.6brbe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(connectionString,
   {
