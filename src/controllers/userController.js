@@ -2,7 +2,9 @@ const Usuario = require('../models/UserModel');
 
 exports.index = 
   async (ctx) =>{
-    await ctx.render('cadrastro')
+    await ctx.render('cadrastro',{
+      usuario:{}
+    })
 };
 exports.cadastro = 
   async (ctx) =>{
@@ -33,4 +35,26 @@ exports.editIndex =
    if(!usuario)return;
    console.log(usuario.nome)
     await ctx.render('cadrastro',{usuario})
+};
+
+exports.edit = 
+  async (ctx) =>{
+  try
+  {
+    if(!ctx.request.params.id)return ;
+   
+  const usuario = new Usuario(ctx.request);
+  await usuario.edit(ctx.request.params.id);
+
+  if(usuario.errors.length > 0) 
+  {
+    ctx.flash('errors', usuario.errors);
+    await ctx.render('index');;
+    return;
+  }
+  //cadastro/${usuario.usuario._id}
+  ctx.redirect(`/`);
+  }catch(e){console.log(e)
+    await ctx.render('cadrastro');}
+
 };

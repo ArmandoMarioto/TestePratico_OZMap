@@ -11,9 +11,13 @@
         <div class="row">
   
           <div class="col-lg my-5">
-            <h4>Criar um novo Usuario</h4>
-            
-            <form class="form-cadastro" action="/cadastro/register" method="POST">
+            <% if(usuario._id) {%>
+              <h4>Editar o Usuario</h4>
+              <form class="form-cadastro" action="/cadastro/edit/<%= usuario._id%>" method="POST">
+              <%} else {%>
+                <h4>Criar um novo Usuario</h4>
+                <form class="form-cadastro" action="/cadastro/register" method="POST">
+                <%} %>
               <div class="form-group">
                 <label>Seu Nome</label>
                 <input value="<%= usuario.nome %>" type="text" class="form-control" name="nome">
@@ -26,7 +30,12 @@
                 <label>Sua idade</label>
                 <input value="<%= usuario.idade %>" type="number" class="form-control" name="idade">
               </div>
-              <button type="submit" class="btn btn-primary">Criar usuario</button>
+              <% if(usuario._id) {%>
+                <button type="submit" class="btn btn-primary">Editar</button>
+                <%} else {%>
+                  <button type="submit" class="btn btn-primary">Criar usuario</button>
+                  <%} %>
+              
             </form>
   
           </div>
