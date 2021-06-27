@@ -11,12 +11,9 @@
             <p class="text-center lead">Todos usuarios estão abaixo</p>
           
             <div class="row">
-                <div class="col my-3">
-                    <div class="alert alert-danger">Um erro qualquer</div>
-                </div>
             </div>
 
-
+            <% if(usuarios.length > 0) { %>
             <div class="reponsive-table">
                 <table class="table my-3">
                     <% usuarios.forEach(usuario => { %>
@@ -31,7 +28,9 @@
 
                 </table>
             </div>
-
+            <% } else { %>
+                <p class="text-center lead">Não existem usuarios</p>
+              <% } %>
 
         </div>
     <div class="col-lg-2"></div>

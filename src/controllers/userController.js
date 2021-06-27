@@ -58,3 +58,14 @@ exports.edit =
     await ctx.render('cadrastro');}
 
 };
+
+exports.delete = async (ctx) =>
+{
+  if(!ctx.request.params.id)return ;
+   
+    
+  const usuario = await Usuario.delete(ctx.request.params.id)
+  if(!usuario)return;
+  console.log(usuario.nome)
+  ctx.redirect(`/`);
+};
