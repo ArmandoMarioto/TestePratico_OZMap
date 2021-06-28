@@ -1,6 +1,6 @@
 //sample test
 //Para rodar os testes, use: npm test
-//PS: Os testes não estão completos e alguns podem comnter erros.
+//PS: Os testes não estão completos e alguns podem conter erros.
 
 // veja mais infos em:
 //https://mochajs.org/
@@ -9,7 +9,7 @@
 //https://developer.mozilla.org/pt-PT/docs/Web/HTTP/Status (http codes)
 
 const app =  require('../src/index.js');
-
+const user = require('../src/models/UserModel');
 const assert = require('assert');
 const chai = require('chai')
 const chaiHttp = require('chai-http');
@@ -62,19 +62,19 @@ describe('Testes da aplicaçao',  () => {
 
     it('deveria ser uma lista vazia de usuarios', function (done) {
         chai.request(app)
-        .get('/users')
+        .get('/')
         .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body.rows).to.eql([]);
+        expect(res.body == null);
         done();
         });
     });
 
     it('deveria criar o usuario raupp', function (done) {
         chai.request(app)
-        .post('/user')
-        .send({nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35})
+        .post('/cadastro/register')
+        .send(new user({nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35}))
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(201);
@@ -82,7 +82,6 @@ describe('Testes da aplicaçao',  () => {
         });
     });
     //...adicionar pelo menos mais 5 usuarios. se adicionar usuario menor de idade, deve dar erro. Ps: não criar o usuario naoExiste
-
     it('o usuario naoExiste não existe no sistema', function (done) {
         chai.request(app)
         .get('/user/naoExiste')
@@ -129,7 +128,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('deveria ser uma lista com pelomenos 5 usuarios', function (done) {
         chai.request(app)
-        .get('/users')
+        .get('/')
         .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);

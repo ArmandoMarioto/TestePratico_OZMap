@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+
+  version: 1.0.0
+  title: CRUD Simples de Usuario
+  contact:
+    email: armandomarioto@gmail.com
+host: localhost:3000
+tags:
+
+  - name: Home
+    description: Pagina Inicial
+schemes:
+  - https
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - Home
+      summary: Lista todos os usuarios na pagina inicial
+      operationId: Index
+      responses:
+        default:
+          description: successful operation
+  /cadastro:
+    get:
+      tags:
+        - Cadastro
+      summary: Carrega a pagina para criar um novo usuario.
+      description: ''
+
+  /cadastro/register:
+    post:
+      tags:
+        - Cadastro
+      summary: Registra um novo usuario.
+      description: ''
+  /cadastro/{id}:
+    get:
+      tags:
+        - Cadastro
+      summary: Carrega as informações de um usuario pelo sua ID.
+      description: ''
+
+  /cadastro/edit/{id}:
+    post:
+      tags:
+        - Cadastro
+      summary: Edita o usuario do ID
+      description: ''
+
+  /cadastro/delete/{id}:
+    get:
+      tags:
+        - Cadastro
+      summary: Delete um Usuario pelo seu ID
+      description: ''
+
+  
+definitions:
+  usuario:
+    type: object
+    properties:
+      nome:
+        type: string
+      email:
+        type: string
+      idade:
+        type: integer
+        format: int32
+    xml:
+      name: usuario
+
+
